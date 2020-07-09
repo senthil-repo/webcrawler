@@ -8,19 +8,20 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.util.Set;
+import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
 /**
  * Created by s.nathan on 09/07/2020.
  */
-public class DownloadWebsite {
+public class DownloadWebsite implements Callable<Website> {
     private Website website;
 
+    @Override
     public Website call() {
         Set<String> jsLibraries = null;
         try {
-            //TODO - In future, the timeout settings needs to be changed and configured, controlled in a better way
-            Connection connection = Jsoup.connect(website.getUrl()).timeout(10000).userAgent(Constants.USER_AGENT);
+            Connection connection = Jsoup.connect(website.getUrl()).timeout(Constants.TIME_OUT).userAgent(Constants.USER_AGENT);
             Document document = connection.get();
             jsLibraries = Jsoup.parse(document.html())
                     .select("script")
