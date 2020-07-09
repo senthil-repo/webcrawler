@@ -17,6 +17,8 @@ import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import java.io.IOException;
+
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -48,7 +50,7 @@ public class DownloadWebsiteTest {
     }
 
     @Test
-    public void testCall() throws Exception{
+    public void testCall() throws IOException{
         when(connection.get()).thenReturn(document);
         when(Jsoup.parse(anyString())).thenReturn(document);
         when(document.html()).thenReturn("DUMMY");
@@ -59,6 +61,23 @@ public class DownloadWebsiteTest {
         assertTrue(" Invalid result ", website.getUrl().equalsIgnoreCase("https://www.nhs.uk"));
         assertTrue(" Wrong result ", website.getJavaScriptLibraries().size() > 0);
     }
+
+    @Test
+    public void testCall_NoResult() throws IOException{
+        when(connection.get()).thenReturn(document);
+        when(Jsoup.parse(anyString())).thenReturn(document);
+        downloadWebsite.setWebsite(getWebsite());
+        //Didn't set some mock values, which will force the call to fail
+        Website website = downloadWebsite.call();
+        assertTrue(" Invalid result ", website.getUrl().equalsIgnoreCase("https://www.nhs.uk"));
+        assertTrue(" Wrong result ", website.getJavaScriptLibraries().size() == 0);
+    }
+
+    //TODO - Would like to add more cases in future. Due to time constraint, i couldn't add more now.
+/*    @Test
+    public void testCall_Exception() {
+
+    }*/
 
     private Website getWebsite() {
         Website website = new Website("https://www.nhs.uk");

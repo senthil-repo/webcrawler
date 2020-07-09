@@ -19,6 +19,7 @@ public class DownloadWebsite {
     public Website call() {
         Set<String> jsLibraries = null;
         try {
+            //TODO - In future, the timeout settings needs to be changed and configured, controlled in a better way
             Connection connection = Jsoup.connect(website.getUrl()).timeout(10000).userAgent(Constants.USER_AGENT);
             Document document = connection.get();
             jsLibraries = Jsoup.parse(document.html())
@@ -30,7 +31,10 @@ public class DownloadWebsite {
                     .collect(Collectors.toSet());
             website.setJavaScriptLibraries(jsLibraries);
         } catch(Exception e) {
-            //TODO
+            //TODO - This must be changed, implemented in future. At present, added this to ignore the following certification exceptions thrown by the websites
+            //SSLHandshakeException, SunCertPathBuilderException, ValidatorException
+            //TODO - Need to fix this by adding the certifcates in the classpath
+            //TODO - Also, need to handle gracefully any unexpected exceptions from the websites
         }
         return website;
     }
