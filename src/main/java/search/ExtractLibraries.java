@@ -37,7 +37,7 @@ public class ExtractLibraries {
             //get results
             return getResult(futures);
         } catch (InterruptedException e) {
-            //TODO - This needs to be refactored in future to handle specifically
+            //TODO - This needs to be refactored in future to handle specifically, gracefully
             throw new RuntimeException(" Unexpected error happened, please try again ");
         } finally {
             executorService.shutdown();
