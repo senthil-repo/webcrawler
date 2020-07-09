@@ -2,6 +2,7 @@ package search;
 
 import domain.Constants;
 import domain.Website;
+import exception.WebsiteAccessException;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -17,8 +18,7 @@ import java.util.Set;
 public class SearchEngine {
     private Set<Website> websites = new HashSet<Website>();
 
-    public Set<Website> getResult() {
-        String url = "https://www.bing.com/search?q=corona";
+    public Set<Website> getResult(String url) {
         try {
             Connection connection = Jsoup.connect(url).userAgent(Constants.USER_AGENT);
             Document document = connection.get();
@@ -27,7 +27,7 @@ public class SearchEngine {
 
             elements.forEach(element -> websites.add(new Website(element.absUrl("href"))));
         }catch(IOException io) {
-            //TODO
+            throw new WebsiteAccessException(" Unable to access the website due to some technical issues. Please try again.");
         }
         return websites;
     }
