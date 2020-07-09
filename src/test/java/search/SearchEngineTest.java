@@ -1,5 +1,6 @@
 package search;
 
+import domain.Website;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,7 +21,7 @@ public class SearchEngineTest {
 
     @Test
     public void testGetResult() {
-        Set<String> websites = searchEngine.getResult();
+        Set<Website> websites = searchEngine.getResult();
         assertTrue(" Invalid result ", websites.size() > 0);
     }
 }
