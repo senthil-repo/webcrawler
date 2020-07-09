@@ -29,8 +29,9 @@ public class WebCrawler {
 
         //print the most used js libraries to the console
         System.out.println( " Top "+mostUsedLibraries.size() + " most used libraries in the websites are :");
-        System.out.println("");
+        System.out.println(" %%%%%%%%%%%%%%%%%%%%%%%%%%% ");
         mostUsedLibraries.forEach(System.out::println);
+        System.out.println(" %%%%%%%%%%%%%%%%%%%%%%%%%%% ");
     }
 
     private Set<Website> getResultFromSearchEngine(String searchEngineUrl, String searchTerm) {

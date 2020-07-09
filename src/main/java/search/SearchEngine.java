@@ -22,8 +22,10 @@ public class SearchEngine {
         try {
             Connection connection = Jsoup.connect(url).userAgent(Constants.USER_AGENT);
             Document document = connection.get();
+            System.out.println("\n");
             Elements elements = document.select("a[href]");
-            System.out.println(" Number of websites found " + elements.size());
+            System.out.println(" ************ Number of websites found:  " + elements.size());
+            System.out.println("\n");
 
             elements.forEach(element -> websites.add(new Website(element.absUrl("href"))));
         }catch(IOException io) {
