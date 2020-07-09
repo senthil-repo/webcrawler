@@ -17,21 +17,28 @@ https://github.com/senthil-repo/webcrawler.git
          Please enter the search term: 
   
 Other informations :
+
 4) Please find below the approach i have followed to build the application :
+
  a) SearchEngine - Implemented the 'Bing' search engine to get all the webite links for the input 'search term'
+ 
  b) DownloadWebsite - Class to download the respective website page and get the java script libraries from it
+ 
  c) ExtractLibraries - Designed the java concurreny model (multi threading) using executor service. By this way, the websites are parallely crawled to retreive the java script libratries.
+ 
  d) WebCrawler - This is the main class that runs the whole program.
  
  e) I have used JSoup library to extract, manipulate the data from website/url. Also, used junit, mock libraries for unit testing & apache commons for get utility method.
  
 Other clarificaitons :
+
 5) I have implemeted the application with TDD. Due to the time constaint, i couldn't add more test cases, test classes to the respective program. 
 I would love to expand that in future.
 
 6) I have added 'TODO' in some places, to express my thoughts, constraints and considerations for future. 
 
 7) As per the advise and the instruction given, i restrict the implementation to meet the time. 
+
 For example - 
 	a) I couldn't spend the time to work more on deduplication algorithms that filters same Javascript libraries with different names. 
 	
