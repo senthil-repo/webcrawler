@@ -82,7 +82,7 @@ public class SearchEngineTest {
     public void testGetResult_EmptyResult() throws IOException{
 
     }*/
-    
+
     private Elements getElements() {
         Elements elements = new Elements();
         Element element1 = new Element(Tag.valueOf("Site1"), "https://www.nhs.uk");

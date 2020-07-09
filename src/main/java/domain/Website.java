@@ -1,5 +1,7 @@
 package domain;
 
+import jdk.internal.org.objectweb.asm.tree.analysis.SourceValue;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,6 +10,7 @@ import java.util.Set;
  */
 public class Website {
     private String url;
+    private Set<String> javaScriptLibraries = new HashSet<>();
 
     public Website(String name) {
         this.url = name;
@@ -19,5 +22,13 @@ public class Website {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public Set<String> getJavaScriptLibraries() {
+        return javaScriptLibraries;
+    }
+
+    public void setJavaScriptLibraries(Set<String> javaScriptLibraries) {
+        this.javaScriptLibraries = javaScriptLibraries;
     }
 }
